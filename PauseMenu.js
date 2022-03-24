@@ -1,5 +1,5 @@
 class PauseMenu {
-  constructor({progress, onComplete}) {
+  constructor({ progress, onComplete }) {
     this.progress = progress;
     this.onComplete = onComplete;
   }
@@ -9,29 +9,29 @@ class PauseMenu {
     //Case 1: Show the first page of options
     if (pageKey === "root") {
       const lineupPizzas = playerState.lineup.map(id => {
-        const {pizzaId} = playerState.pizzas[id];
+        const { pizzaId } = playerState.pizzas[id];
         const base = Pizzas[pizzaId];
         return {
           label: base.name,
           description: base.description,
           handler: () => {
-            this.keyboardMenu.setOptions( this.getOptions(id) )
+            this.keyboardMenu.setOptions(this.getOptions(id))
           }
         }
       })
       return [
         ...lineupPizzas,
         {
-          label: "Save",
-          description: "Save your progress",
+          label: "Salvar",
+          description: "Sarvar o jogo",
           handler: () => {
             this.progress.save();
             this.close();
           }
         },
         {
-          label: "Close",
-          description: "Close the pause menu",
+          label: "Fechar",
+          description: "Fechar o menu",
           handler: () => {
             this.close();
           }
@@ -43,14 +43,14 @@ class PauseMenu {
     const unequipped = Object.keys(playerState.pizzas).filter(id => {
       return playerState.lineup.indexOf(id) === -1;
     }).map(id => {
-      const {pizzaId} = playerState.pizzas[id];
+      const { pizzaId } = playerState.pizzas[id];
       const base = Pizzas[pizzaId];
       return {
         label: `Swap for ${base.name}`,
         description: base.description,
         handler: () => {
           playerState.swapLineup(pageKey, id);
-          this.keyboardMenu.setOptions( this.getOptions("root") );
+          this.keyboardMenu.setOptions(this.getOptions("root"));
         }
       }
     })
@@ -58,18 +58,18 @@ class PauseMenu {
     return [
       ...unequipped,
       {
-        label: "Move to front",
-        description: "Move this pizza to the front of the list",
+        label: "Mover",
+        description: "Move esta pizza para frente",
         handler: () => {
           playerState.moveToFront(pageKey);
-          this.keyboardMenu.setOptions( this.getOptions("root") );
+          this.keyboardMenu.setOptions(this.getOptions("root"));
         }
       },
       {
-        label: "Back",
-        description: "Back to root menu",
+        label: "Voltar",
+        description: "Voltar ao manu",
         handler: () => {
-          this.keyboardMenu.setOptions( this.getOptions("root") );
+          this.keyboardMenu.setOptions(this.getOptions("root"));
         }
       }
     ];

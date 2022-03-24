@@ -12,6 +12,8 @@ class Person extends GameObject {
       "left": ["x", -1],
       "right": ["x", 1],
     }
+
+    this.standBehaviorTimeout;
   }
 
   update(state) {
@@ -42,11 +44,12 @@ class Person extends GameObject {
       //Stop here if space is not free
       if (state.map.isSpaceTaken(this.x, this.y, this.direction)) {
 
-        behavior.retry && setTimeout(() => {
-          this.startBehavior(state, behavior)
-        }, 10);
-
-        return;
+        
+          behavior.retry && setTimeout(() => {
+            this.startBehavior(state, behavior)
+          }, 10);
+          return;
+        
       }
 
       //Ready to walk!
@@ -57,7 +60,7 @@ class Person extends GameObject {
 
     if (behavior.type === "stand") {
       this.isStanding = true;
-      setTimeout(() => {
+      this.standBehaviorTimeout = setTimeout(() => {
         utils.emitEvent("PersonStandComplete", {
           whoId: this.id
         })

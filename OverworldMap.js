@@ -64,8 +64,14 @@ class OverworldMap {
 
     this.isCutscenePlaying = false;
 
-    //Reset NPCs to do their idle behavior
-    Object.values(this.gameObjects).forEach(object => object.doBehaviorEvent(this))
+    //Reset NPCs to do their idle behavior (if they are standing)
+    Object.values(this.gameObjects).forEach(object => {
+      const current = object.behaviorLoop[object.behaviorLoopIndex];
+      if (current && current.type === "stand") {
+        object.doBehaviorEvent(this);
+      }
+    })
+
   }
 
   checkForActionCutscene() {
@@ -119,14 +125,15 @@ window.OverworldMaps = {
         y: utils.withGrid(6),
       }),
       npcA: new Person({
-        x: utils.withGrid(7),
+        x: utils.withGrid(9),
         y: utils.withGrid(9),
         src: "/images/characters/people/npc1.png",
         behaviorLoop: [
-          { type: "stand",  direction: "left", time: 800 },
-          { type: "stand",  direction: "up", time: 800 },
-          { type: "stand",  direction: "right", time: 1200 },
-          { type: "stand",  direction: "up", time: 300 },
+          { type: "walk", direction: "left", },
+          { type: "walk", direction: "down", },
+          { type: "walk", direction: "right", },
+          { type: "walk", direction: "up", },
+          //{ type: "stand", direction: "up", time: 400, },
         ],
         talking: [
           {
@@ -138,14 +145,25 @@ window.OverworldMaps = {
           {
             events: [
               { type: "textMessage", text: "I'm going to crush you!", faceHero: "npcA" },
-              { type: "battle", enemyId: "beth" },
-              { type: "addStoryFlag", flag: "DEFEATED_BETH"},
-              { type: "textMessage", text: "You crushed me like weak pepper.", faceHero: "npcA" },
+              // { type: "battle", enemyId: "beth" },
+              // { type: "addStoryFlag", flag: "DEFEATED_BETH"},
+              // { type: "textMessage", text: "You crushed me like weak pepper.", faceHero: "npcA" },
               // { type: "textMessage", text: "Go away!"},
-              //{ who: "hero", type: "walk",  direction: "up" },
+               //{ who: "npcB", type: "walk",  direction: "up" },
             ]
           }
         ]
+      }),
+      npcC: new Person({
+        x: utils.withGrid(4),
+        y: utils.withGrid(8),
+        src: "/images/characters/people/npc1.png",
+        behaviorLoop: [
+          { type: "stand", direction: "left", time: 500, },
+          { type: "stand", direction: "down", time: 500, },
+          { type: "stand", direction: "right", time: 500, },
+          { type: "stand", direction: "up", time: 500, },
+        ],
       }),
       npcB: new Person({
         x: utils.withGrid(8),
