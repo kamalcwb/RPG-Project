@@ -1,5 +1,5 @@
 class KeyboardMenu {
-  constructor(config={}) {
+  constructor(config = {}) {
     this.options = []; //set by updater method
     this.up = null;
     this.down = null;
@@ -24,7 +24,7 @@ class KeyboardMenu {
     this.element.querySelectorAll("button").forEach(button => {
 
       button.addEventListener("click", () => {
-        const chosenOption = this.options[ Number(button.dataset.button) ];
+        const chosenOption = this.options[Number(button.dataset.button)];
         chosenOption.handler();
       })
       button.addEventListener("mouseenter", () => {
@@ -40,7 +40,7 @@ class KeyboardMenu {
       this.element.querySelector("button[data-button]:not([disabled])").focus();
     }, 10)
 
-    
+
 
 
   }
@@ -52,7 +52,7 @@ class KeyboardMenu {
     //Description box element
     this.descriptionElement = document.createElement("div");
     this.descriptionElement.classList.add("DescriptionBox");
-    this.descriptionElement.innerHTML = (`<p>I will provide information!</p>`);
+    this.descriptionElement.innerHTML = (`<p>Vou te dar alguma informação!</p>`);
     this.descriptionElementText = this.descriptionElement.querySelector("p");
   }
 

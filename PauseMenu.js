@@ -59,7 +59,7 @@ class PauseMenu {
       ...unequipped,
       {
         label: "Mover",
-        description: "Move esta pizza para frente",
+        description: "Mover esta pizza para frente",
         handler: () => {
           playerState.moveToFront(pageKey);
           this.keyboardMenu.setOptions(this.getOptions("root"));

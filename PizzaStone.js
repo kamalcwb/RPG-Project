@@ -17,12 +17,12 @@ class PizzaStone extends GameObject {
       {
         required: [this.storyFlag],
         events: [
-          { type: "textMessage", text: "You have already used this." },
+          { type: "textMessage", text: "Você já usou isto!." },
         ]
       },
       {
         events: [
-          { type: "textMessage", text: "Approaching the legendary pizza stone..." },
+          { type: "textMessage", text: "Se aproximando da lendaria pedra da Pizza..." },
           { type: "craftingMenu", pizzas: this.pizzas },
           { type: "addStoryFlag", flag: this.storyFlag },
         ]
