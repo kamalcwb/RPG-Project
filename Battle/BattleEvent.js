@@ -25,12 +25,12 @@ class BattleEvent {
     let who = this.event.onCaster ? caster : target;
 
     if (damage) {
-      //modify the target to have less HP
+
       target.update({
         hp: target.hp - damage
       })
       
-      //start blinking
+
       target.pizzaElement.classList.add("battle-damage-blink");
     }
 
@@ -56,14 +56,14 @@ class BattleEvent {
     }
 
 
-    //Wait a little bit
+
     await utils.wait(600)
 
-    //Update Team components
+
     this.battle.playerTeam.update();
     this.battle.enemyTeam.update();
 
-    //stop blinking
+
     target.pizzaElement.classList.remove("battle-damage-blink");
     resolve();
   }
@@ -78,7 +78,6 @@ class BattleEvent {
         return c.id !== caster.id && c.team === caster.team && c.hp > 0
       }),
       onComplete: submission => {
-        //submission { what move to use, who to use it on }
         resolve(submission)
       }
     })
@@ -100,18 +99,18 @@ class BattleEvent {
   async replace(resolve) {
     const {replacement} = this.event;
 
-    //Clear out the old combatant
+
     const prevCombatant = this.battle.combatants[this.battle.activeCombatants[replacement.team]];
     this.battle.activeCombatants[replacement.team] = null;
     prevCombatant.update();
     await utils.wait(400);
 
-    //In with the new!
+
     this.battle.activeCombatants[replacement.team] = replacement.id;
     replacement.update();
     await utils.wait(400);
 
-    //Update Team components
+
     this.battle.playerTeam.update();
     this.battle.enemyTeam.update();
 
@@ -126,7 +125,7 @@ class BattleEvent {
         amount -= 1;
         combatant.xp += 1;
 
-        //Check if we've hit level up point
+
         if (combatant.xp === combatant.maxXp) {
           combatant.xp = 0;
           combatant.maxXp = 100;

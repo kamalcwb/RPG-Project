@@ -1,4 +1,4 @@
-class SubmissionMenu { 
+class SubmissionMenu {
   constructor({ caster, enemy, onComplete, items, replacements }) {
     this.caster = caster;
     this.enemy = enemy;
@@ -17,7 +17,7 @@ class SubmissionMenu {
             quantity: 1,
             instanceId: item.instanceId,
           }
-       }
+        }
       }
     })
     this.items = Object.values(quantityMap);
@@ -26,8 +26,8 @@ class SubmissionMenu {
   getPages() {
 
     const backOption = {
-      label: "Go Back",
-      description: "Return to previous page",
+      label: "Voltar",
+      description: "Voltar para página anterior",
       handler: () => {
         this.keyboardMenu.setOptions(this.getPages().root)
       }
@@ -36,27 +36,24 @@ class SubmissionMenu {
     return {
       root: [
         {
-          label: "Attack",
-          description: "Choose an attack",
+          label: "Atacar",
+          description: "Escolha um ataque",
           handler: () => {
-            //Do something when chosen...
-            this.keyboardMenu.setOptions( this.getPages().attacks )
+            this.keyboardMenu.setOptions(this.getPages().attacks)
           }
         },
         {
-          label: "Items",
-          description: "Choose an item",
+          label: "Itens",
+          description: "Escolha um item",
           handler: () => {
-            //Go to items page...
-            this.keyboardMenu.setOptions( this.getPages().items )
+            this.keyboardMenu.setOptions(this.getPages().items)
           }
         },
         {
-          label: "Swap",
-          description: "Change to another pizza",
-          handler: () => { 
-            //See pizza options
-            this.keyboardMenu.setOptions( this.getPages().replacements )
+          label: "Trocar",
+          description: "Trocar Pizza",
+          handler: () => {
+            this.keyboardMenu.setOptions(this.getPages().replacements)
           }
         },
       ],
@@ -80,7 +77,7 @@ class SubmissionMenu {
             label: action.name,
             description: action.description,
             right: () => {
-              return "x"+item.quantity;
+              return "x" + item.quantity;
             },
             handler: () => {
               this.menuSubmit(action, item.instanceId)
@@ -95,7 +92,6 @@ class SubmissionMenu {
             label: replacement.name,
             description: replacement.description,
             handler: () => {
-              //Swap me in, coach!
               this.menuSubmitReplacement(replacement)
             }
           }
@@ -112,7 +108,7 @@ class SubmissionMenu {
     })
   }
 
-  menuSubmit(action, instanceId=null) {
+  menuSubmit(action, instanceId = null) {
 
     this.keyboardMenu?.end();
 
@@ -124,20 +120,18 @@ class SubmissionMenu {
   }
 
   decide() {
-    //TODO: Enemies should randomly decide what to do...
-    this.menuSubmit(Actions[ this.caster.actions[0] ]);
+    this.menuSubmit(Actions[this.caster.actions[0]]);
   }
 
   showMenu(container) {
     this.keyboardMenu = new KeyboardMenu();
     this.keyboardMenu.init(container);
-    this.keyboardMenu.setOptions( this.getPages().root )
+    this.keyboardMenu.setOptions(this.getPages().root)
   }
 
   init(container) {
 
     if (this.caster.isPlayerControlled) {
-      //Show some UI
       this.showMenu(container)
     } else {
       this.decide()

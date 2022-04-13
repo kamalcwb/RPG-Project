@@ -42,7 +42,6 @@ class OverworldMap {
       let object = this.gameObjects[key];
       object.id = key;
 
-      //TODO: determine if this object should actually mount
       object.mount(this);
 
     })
@@ -64,7 +63,6 @@ class OverworldMap {
 
     this.isCutscenePlaying = false;
 
-    //Reset NPCs to do their idle behavior (if they are standing)
     Object.values(this.gameObjects).forEach(object => {
       const current = object.behaviorLoop[object.behaviorLoopIndex];
       if (current && current.type === "stand") {

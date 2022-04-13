@@ -3,7 +3,7 @@ class Combatant {
     Object.keys(config).forEach(key => {
       this[key] = config[key];
     })
-    this.hp = typeof(this.hp) === "undefined" ? this.maxHp : this.hp;
+    this.hp = typeof (this.hp) === "undefined" ? this.maxHp : this.hp;
     this.battle = battle;
   }
 
@@ -49,32 +49,30 @@ class Combatant {
 
     this.pizzaElement = document.createElement("img");
     this.pizzaElement.classList.add("Pizza");
-    this.pizzaElement.setAttribute("src", this.src );
-    this.pizzaElement.setAttribute("alt", this.name );
-    this.pizzaElement.setAttribute("data-team", this.team );
+    this.pizzaElement.setAttribute("src", this.src);
+    this.pizzaElement.setAttribute("alt", this.name);
+    this.pizzaElement.setAttribute("data-team", this.team);
 
     this.hpFills = this.hudElement.querySelectorAll(".Combatant_life-container > rect");
     this.xpFills = this.hudElement.querySelectorAll(".Combatant_xp-container > rect");
   }
 
-  update(changes={}) {
-    //Update anything incoming
+  update(changes = {}) {
+
     Object.keys(changes).forEach(key => {
       this[key] = changes[key]
     });
 
-    //Update active flag to show the correct pizza & hud
     this.hudElement.setAttribute("data-active", this.isActive);
     this.pizzaElement.setAttribute("data-active", this.isActive);
 
-    //Update HP & XP percent fills
+
     this.hpFills.forEach(rect => rect.style.width = `${this.hpPercent}%`)
     this.xpFills.forEach(rect => rect.style.width = `${this.xpPercent}%`)
 
-    //Update level on screen
+
     this.hudElement.querySelector(".Combatant_level").innerText = this.level;
 
-    //Update status
     const statusElement = this.hudElement.querySelector(".Combatant_status");
     if (this.status) {
       statusElement.innerText = this.status.type;
@@ -89,7 +87,7 @@ class Combatant {
 
     if (this.status?.type === "clumsy" && utils.randomFromArray([true, false, false])) {
       return [
-        { type: "textMessage", text: `${this.name} flops over!` },
+        { type: "textMessage", text: `${this.name} erra!` },
       ]
     }
 
@@ -99,10 +97,10 @@ class Combatant {
   getPostEvents() {
     if (this.status?.type === "saucy") {
       return [
-        { type: "textMessage", text: "Feelin' saucy!" },
+        { type: "textMessage", text: "Sentido-se confiante!" },
         { type: "stateChange", recover: 5, onCaster: true }
       ]
-    } 
+    }
     return [];
   }
 
@@ -115,7 +113,7 @@ class Combatant {
         })
         return {
           type: "textMessage",
-          text: "Status expired!"
+          text: "Status acabou!"
         }
       }
     }

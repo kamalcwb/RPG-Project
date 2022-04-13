@@ -6,23 +6,23 @@ class TextMessage {
   }
 
   createElement() {
-    //Create the element
+
     this.element = document.createElement("div");
     this.element.classList.add("TextMessage");
 
     this.element.innerHTML = (`
       <p class="TextMessage_p"></p>
-      <button class="TextMessage_button">Next</button>
+      <button class="TextMessage_button">Proximo</button>
     `)
 
-    //Init the typewriter effect
+
     this.revealingText = new RevealingText({
       element: this.element.querySelector(".TextMessage_p"),
       text: this.text
     })
 
     this.element.querySelector("button").addEventListener("click", () => {
-      //Close the text message
+
       this.done();
     });
 

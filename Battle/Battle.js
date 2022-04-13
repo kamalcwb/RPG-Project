@@ -49,23 +49,23 @@ class Battle {
 
     this.activeCombatants = {
       player: null, //"player1",
-      enemy: null, //"enemy1",
+      enemy: null, //"inimigo1",
     }
 
-    //Dynamically add the Player team
+
     window.playerState.lineup.forEach(id => {
       this.addCombatant(id, "player", window.playerState.pizzas[id])
     });
-    //Now the enemy team
+
     Object.keys(this.enemy.pizzas).forEach(key => {
-      this.addCombatant("e_"+key, "enemy", this.enemy.pizzas[key])
+      this.addCombatant("e_" + key, "enemy", this.enemy.pizzas[key])
     })
 
 
-    //Start empty
+
     this.items = []
 
-    //Add in player items
+
     window.playerState.items.forEach(item => {
       this.items.push({
         ...item,
@@ -78,17 +78,17 @@ class Battle {
   }
 
   addCombatant(id, team, config) {
-      this.combatants[id] = new Combatant({
-        ...Pizzas[config.pizzaId],
-        ...config,
-        team,
-        isPlayerControlled: team === "player"
-      }, this)
+    this.combatants[id] = new Combatant({
+      ...Pizzas[config.pizzaId],
+      ...config,
+      team,
+      isPlayerControlled: team === "player"
+    }, this)
 
-      //Populate first active pizza
 
-      console.log(this)
-      this.activeCombatants[team] = this.activeCombatants[team] || id
+
+    console.log(this)
+    this.activeCombatants[team] = this.activeCombatants[team] || id
   }
 
   createElement() {
@@ -115,8 +115,8 @@ class Battle {
       let combatant = this.combatants[key];
       combatant.id = key;
       combatant.init(this.element)
-      
-      //Add to correct team
+
+
       if (combatant.team === "player") {
         this.playerTeam.combatants.push(combatant);
       } else if (combatant.team === "enemy") {
@@ -150,12 +150,12 @@ class Battle {
             }
           })
 
-          //Get rid of player used items
+
           playerState.items = playerState.items.filter(item => {
             return !this.usedInstanceIds[item.instanceId]
           })
 
-          //Send signal to update
+
           utils.emitEvent("PlayerStateUpdated");
         }
 

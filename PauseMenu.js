@@ -6,7 +6,7 @@ class PauseMenu {
 
   getOptions(pageKey) {
 
-    //Case 1: Show the first page of options
+
     if (pageKey === "root") {
       const lineupPizzas = playerState.lineup.map(id => {
         const { pizzaId } = playerState.pizzas[id];
@@ -39,7 +39,7 @@ class PauseMenu {
       ]
     }
 
-    //Case 2: Show the options for just one pizza (by id)
+
     const unequipped = Object.keys(playerState.pizzas).filter(id => {
       return playerState.lineup.indexOf(id) === -1;
     }).map(id => {
