@@ -24,7 +24,7 @@ window.Pizzas = {
     actions: ["damage1", "saucyStatus", "clumsyStatus"],
   },
   "v001": {
-    name: "Majericão",
+    name: "Manjerona",
     description: "Verde como o Hulk",
     type: PizzaTypes.veggie,
     src: "/images/characters/pizzas/v001.png",
