@@ -364,7 +364,28 @@ window.OverworldMaps = {
         isPlayerControlled: true,
         x: utils.withGrid(30),
         y: utils.withGrid(10),
-      })
+      }),
+      npcE: new Person({
+        x: utils.withGrid(8),
+        y: utils.withGrid(5),
+        src: "/images/characters/people/erio.png",
+        talking: [
+          {
+            events: [
+              { type: "textMessage", text: "Hahaha!", faceHero: "npcB" },
+              { type: "addStoryFlag", flag: "TALKED_TO_ERIO" },
+              { type: "battle", enemyId: "erio" }
+            ]
+          }
+        ],
+        behaviorLoop: [
+          { type: "walk", direction: "left" },
+          { type: "stand", direction: "up", time: 800 },
+          { type: "walk", direction: "up" },
+          { type: "walk", direction: "right" },
+          { type: "walk", direction: "down" },
+        ]
+      }),
     },
     walls: {
       [utils.asGridCoord(4, 9)]: true,
