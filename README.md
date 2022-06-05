@@ -1,7 +1,7 @@
 ![PIZZA UFC](https://github.com/kamalcwb/RPG-Project/blob/main/images/Project/StartMenu.png)
 <h2>RPG Project</h2>
 
->Status: EM DESENVOLVIMENTO ⚠️
+>Status: ⚠️⚠️⚠️⚠️ EM DESENVOLVIMENTO ⚠️⚠️⚠️⚠️
 
 
 ### É uma aplicação WEB feita com JavaSCript, que simula um mundo virtual onde é possivel capturar pizzas e usar para batalhar.
