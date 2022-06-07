@@ -33,5 +33,5 @@
 ## Como Executar o projeto:
 
 1) Execute um Web Server (Servidor HTTP basico)
-2) Abra o index.html
+2) Abra o index.html (pode ser com o live server)
 3) Divita-se
