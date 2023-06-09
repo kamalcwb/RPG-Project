@@ -14,7 +14,7 @@ class PlayerState {
       //   pizzaId: "v001",
       //   hp: 50,
       //   maxHp: 50,
-      //   xp: 75,
+      //   xp: 0,
       //   maxXp: 100,
       //   level: 1,
       //   status: null,
@@ -23,7 +23,7 @@ class PlayerState {
       //   pizzaId: "f001",
       //   hp: 50,
       //   maxHp: 50,
-      //   xp: 75,
+      //   xp: 0,
       //   maxXp: 100,
       //   level: 1,
       //   status: null,
@@ -40,7 +40,7 @@ class PlayerState {
   }
 
   addPizza(pizzaId) {
-    const newId = `p${Date.now()}`+Math.floor(Math.random() * 99999);
+    const newId = `p${Date.now()}` + Math.floor(Math.random() * 99999);
     this.pizzas[newId] = {
       pizzaId,
       hp: 50,

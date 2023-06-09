@@ -85,7 +85,7 @@ class Combatant {
 
   getReplacedEvents(originalEvents) {
 
-    if (this.status?.type === "clumsy" && utils.randomFromArray([true, false, false])) {
+    if (this.status?.type === "estabanado" && utils.randomFromArray([true, false, false])) {
       return [
         { type: "textMessage", text: `${this.name} erra!` },
       ]
@@ -95,9 +95,9 @@ class Combatant {
   }
 
   getPostEvents() {
-    if (this.status?.type === "saucy") {
+    if (this.status?.type === "picante") {
       return [
-        { type: "textMessage", text: "Sentido-se confiante!" },
+        { type: "textMessage", text: "Está super temperado!" },
         { type: "stateChange", recover: 5, onCaster: true }
       ]
     }

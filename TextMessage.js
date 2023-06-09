@@ -12,7 +12,7 @@ class TextMessage {
 
     this.element.innerHTML = (`
       <p class="TextMessage_p"></p>
-      <button class="TextMessage_button">Proximo</button>
+      <button class="TextMessage_button">...</button>
     `)
 
 

@@ -14,7 +14,7 @@ window.Actions = {
     targetType: "friendly",
     success: [
       { type: "textMessage", text: "{CASTER} usa {ACTION}!" },
-      { type: "stateChange", status: { type: "saucy", expiresIn: 3 } }
+      { type: "stateChange", status: { type: "picante", expiresIn: 3 } }
     ]
   },
   clumsyStatus: {
@@ -23,7 +23,7 @@ window.Actions = {
     success: [
       { type: "textMessage", text: "{CASTER} usa {ACTION}!" },
       { type: "animation", animation: "glob", color: "#dafd2a" },
-      { type: "stateChange", status: { type: "clumsy", expiresIn: 3 } },
+      { type: "stateChange", status: { type: "estabanado", expiresIn: 3 } },
       { type: "textMessage", text: "{TARGET} está escorregando ao redor!" },
     ]
   },

@@ -4,7 +4,7 @@ class Progress {
     this.startingHeroX = 0;
     this.startingHeroY = 0;
     this.startingHeroDirection = "down";
-    this.saveFileKey = "PizzaLegends_SaveFile1";
+    this.saveFileKey = "UFCPizza_SaveFile1";
   }
 
   save() {
@@ -26,7 +26,7 @@ class Progress {
     const file = window.localStorage.getItem(this.saveFileKey);
     return file ? JSON.parse(file) : null
   }
-  
+
   load() {
     const file = this.getSaveFile();
     if (file) {

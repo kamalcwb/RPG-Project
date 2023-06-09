@@ -46,7 +46,7 @@ class PauseMenu {
       const { pizzaId } = playerState.pizzas[id];
       const base = Pizzas[pizzaId];
       return {
-        label: `Swap for ${base.name}`,
+        label: `Trocar por ${base.name}`,
         description: base.description,
         handler: () => {
           playerState.swapLineup(pageKey, id);

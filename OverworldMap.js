@@ -135,19 +135,18 @@ window.OverworldMaps = {
         ],
         talking: [
           {
-            required: ["TALKED_TO_ERIO"],
+            required: ["DEFEATED_BETH"],
             events: [
-              { type: "textMessage", text: "Ola, você é novo por aqui?", faceHero: "npcA" },
+              { type: "textMessage", text: "Betina diz: Foi uma ótima batalha...", faceHero: "npcA" },
             ]
           },
           {
             events: [
-              { type: "textMessage", text: "Eu vou esmagar você!", faceHero: "npcA" },
+              { type: "textMessage", text: "Betina diz: Eu vou esmagar você!", faceHero: "npcA" },
               { type: "battle", enemyId: "beth" },
               { type: "addStoryFlag", flag: "DEFEATED_BETH" },
-              { type: "textMessage", text: "Você acabou comigo.", faceHero: "npcA" },
-              { type: "textMessage", text: "Vá embora!" },
-              { who: "npcB", type: "walk", direction: "up" },
+              { type: "textMessage", text: "Betina diz: Você acabou comigo.", faceHero: "npcA" },
+              { type: "textMessage", text: "Vá embora!" }
             ]
           }
         ]
@@ -157,11 +156,19 @@ window.OverworldMaps = {
         y: utils.withGrid(8),
         src: "/images/characters/people/npc1.png",
         behaviorLoop: [
-          { type: "stand", direction: "left", time: 500, },
-          { type: "stand", direction: "down", time: 500, },
-          { type: "stand", direction: "right", time: 500, },
-          { type: "stand", direction: "up", time: 500, },
+          { type: "stand", direction: "left", time: 1500, },
+          { type: "stand", direction: "down", time: 2500, },
+          { type: "stand", direction: "right", time: 1500, },
+          { type: "stand", direction: "up", time: 3500, },
         ],
+        talking: [
+          {
+            // required: ["DEFEATED_BETH"],
+            events: [
+              { type: "textMessage", text: "Lisa diz: Você já usou a Pedra da Pizza?", faceHero: "npcC" },
+            ]
+          },
+        ]
       }),
       npcB: new Person({
         x: utils.withGrid(8),
@@ -169,9 +176,16 @@ window.OverworldMaps = {
         src: "/images/characters/people/erio.png",
         talking: [
           {
+            required: ["DEFEATED_ERIO"],
             events: [
-              { type: "textMessage", text: "Hahaha!", faceHero: "npcB" },
-              { type: "addStoryFlag", flag: "TALKED_TO_ERIO" },
+              { type: "textMessage", text: "Erio diz: Parabéns, você realmente é muito forte!", faceHero: "npcB" },
+              { type: "addStoryFlag", flag: "TALKED_TO_ERIO" }
+            ]
+          },
+          {
+            events: [
+              { type: "textMessage", text: "Erio diz: Hahaha, vamos batalhar!", faceHero: "npcB" },
+              { type: "addStoryFlag", flag: "DEFEATED_ERIO" },
               { type: "battle", enemyId: "erio" }
             ]
           }
@@ -290,8 +304,17 @@ window.OverworldMaps = {
         src: "/images/characters/people/npc3.png",
         talking: [
           {
+            required: ["DEFEATED_BETH", "DEFEATED_ERIO"],
             events: [
-              { type: "textMessage", text: "Você conseguiu", faceHero: "npcB" },
+              { type: "textMessage", text: "Bilu diz: Você conseguiu, provou ser forte!", faceHero: "npcB" },
+              { type: "textMessage", text: "Mas ainda tem um último desafio!", faceHero: "npcB" },
+              { type: "textMessage", text: "Precisa me derrotar para provar ser o mais forte de todos!", faceHero: "npcB" },
+              { type: "battle", enemyId: "bilu" }
+            ]
+          },
+          {
+            events: [
+              { type: "textMessage", text: "Bilu diz: Você ainda não é forte o suficiente", faceHero: "npcB" },
             ]
           }
         ]
@@ -365,27 +388,27 @@ window.OverworldMaps = {
         x: utils.withGrid(30),
         y: utils.withGrid(10),
       }),
-      npcE: new Person({
-        x: utils.withGrid(8),
-        y: utils.withGrid(5),
-        src: "/images/characters/people/erio.png",
-        talking: [
-          {
-            events: [
-              { type: "textMessage", text: "Hahaha!", faceHero: "npcB" },
-              { type: "addStoryFlag", flag: "TALKED_TO_ERIO" },
-              { type: "battle", enemyId: "erio" }
-            ]
-          }
-        ],
-        behaviorLoop: [
-          { type: "walk", direction: "left" },
-          { type: "stand", direction: "up", time: 800 },
-          { type: "walk", direction: "up" },
-          { type: "walk", direction: "right" },
-          { type: "walk", direction: "down" },
-        ]
-      }),
+      // npcE: new Person({
+      //   x: utils.withGrid(8),
+      //   y: utils.withGrid(5),
+      //   src: "/images/characters/people/erio.png",
+      //   talking: [
+      //     {
+      //       events: [
+      //         { type: "textMessage", text: "Hahaha!", faceHero: "npcB" },
+      //         { type: "addStoryFlag", flag: "TALKED_TO_ERIO" },
+      //         { type: "battle", enemyId: "erio" }
+      //       ]
+      //     }
+      //   ],
+      //   behaviorLoop: [
+      //     { type: "walk", direction: "left" },
+      //     { type: "stand", direction: "up", time: 800 },
+      //     { type: "walk", direction: "up" },
+      //     { type: "walk", direction: "right" },
+      //     { type: "walk", direction: "down" },
+      //   ]
+      // }),
     },
     walls: {
       [utils.asGridCoord(4, 9)]: true,
